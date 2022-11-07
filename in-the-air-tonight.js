@@ -8,18 +8,18 @@ message when the air is too polluted.
 
 const checkAir = (samples, threshold) => {
   
-  let dirtySum = 0; let cleanSum = 0; //Placeholders for sum of index occurances of dirty vs clean
-  let airQuality = 0; // Placeholder to calculate % of dirty air (dirty / clean)
+  let dirtySum = 0; let totalSum = 0; //Placeholders for sum of index occurances of dirty vs total
+  let airQuality = 0; // Placeholder to calculate % of dirty air (dirty / total)
 
   for (check of samples) {
-    if (check === "clean") { // IF array index = clean, increase 'CleanSum'
-      cleanSum++;
-    } else if (check === "dirty") { // IF array index = dirty, increase 'dirtySum'
+    totalSum++; // increase total each loop
+
+    if (check === "dirty") { // IF array index = dirty, increase 'dirtySum'
       dirtySum++;
     };
   };
 
-  airQuality = dirtySum / cleanSum // Calculate % of dirty air (dirty / clean)
+  airQuality = dirtySum / totalSum // Calculate % of dirty air (dirty / total)
 
   if (airQuality < threshold) {return "Clean"} // If 'airQuality' < than threshold return clean
   else {return "Polluted"}; // If 'airQuality' > than threshold return Polluted
