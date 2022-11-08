@@ -1,5 +1,11 @@
-// Use the value below whenever you need the value of Pi
-const PI = 3.14159 ;
+/* Kata 11 - Bouncy Castles
+Each shape has a different calculation for determining volume, so we'll need 
+to create a few functions that will help us figure out the volume of the 
+various inflatable attractions.
+*/
+
+
+const PI = 3.14159 ; // Use the value below whenever you need the value of Pi
 
 const sphereVolume = radius => {
   const vol = (4/3)*PI*(radius ** 3);
@@ -26,11 +32,11 @@ const totalVolume = function (solids) {
   total = 0;
 
   for (obj of solids){
-    if (obj.type === "sphere"){
+    if (obj.type === "sphere"){  //if sphere pass object key infromation into sphereVolume func
       total += sphereVolume(obj.radius)
-    } else if (obj.type === "cone") {
+    } else if (obj.type === "cone") { //if cone pass object key infromation into coneVolume func
       total += coneVolume(obj.radius,obj.height)
-    } else if (obj.type === "prism"){
+    } else if (obj.type === "prism"){ //if prism pass object key infromation into prismVolume func
       total += prismVolume(obj.height,obj.width,obj.depth)
     }
   }
