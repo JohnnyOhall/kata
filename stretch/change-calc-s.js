@@ -1,22 +1,31 @@
+/* Kata 14 - Change Calculator
+Create a function named calculateChange that takes in a total amount of a bill 
+and the total cash given to pay that bill. Return a new object that describes 
+the total amount of change for the cashier to give back. Omit any types of 
+change that you shouldn't give back, i.e. if you don't give back a twenty dollar 
+bill, don't include it in the results.
+*/
+
 const calculateChange = function(total, cash) {
-  let change = cash - total
-  let giveBack = {};
-  let remain = 0;
+  let change = cash - total; //Calculate change left after purchase
+  let giveBack = {}; //Object to store what change to give a function return
+  let remain = 0; //placeholder to store remainder and change to pass to each case
 
   switch (true) {
-    case change >= 2000:
-      remain = change % 2000;
-      giveBack.twentyDollar = (change - remain) / 2000;
-      change = remain;
-
+    case change >= 2000: // checks if twentyDollar change req.
+      remain = change % 2000; //Calc change to pass down to next case
+      giveBack.twentyDollar = (change - remain) / 2000; //calc total twenty req.
+      change = remain; //moves remainder to change for next case
+      //check if any twentyDollar change given, if not - removes from obj
       if (giveBack.twentyDollar === 0){
         delete giveBack.twentyDollar;
       }
 
-    case change >= 1000:
-      remain = change % 1000;
-      giveBack.tenDollar = (change - remain) / 1000;
-      change = remain;
+    //All cases but last follow same method as first case
+    case change >= 1000: 
+      remain = change % 1000; 
+      giveBack.tenDollar = (change - remain) / 1000; 
+      change = remain; 
 
       if (giveBack.tenDollar === 0){
         delete giveBack.tenDollar;
@@ -59,7 +68,7 @@ const calculateChange = function(total, cash) {
       }
 
     case change >= 10:
-      remain = change % 10;
+      remain = change % 10; 
       giveBack.dime = (change - remain) / 10;
       change = remain;
         
@@ -75,15 +84,16 @@ const calculateChange = function(total, cash) {
       if (giveBack.nickle === 0){
         delete giveBack.nickle;
       }
-
+    
+    // check if any pennies are required
     case change < 5 && change > 0:
       giveBack.penny = change
   }
 
-  return giveBack
+  return giveBack //returns total change after calcs
 }
 
-
+// TEST CASES //
 console.log(calculateChange(1787, 2000));
 console.log(calculateChange(2623, 4000));
 console.log(calculateChange(501, 1000));
