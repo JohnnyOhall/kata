@@ -34,7 +34,6 @@ const squareCode = function(message) {
   }
 
   return code;
-
   */
  
   let encodedCodeArr = Array.from({length: codeArr[0].length}, e => '');
